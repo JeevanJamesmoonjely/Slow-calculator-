@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🧠 Slow Calculator</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #89f7fe, #66a6ff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .calculator {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 90%;
+      max-width: 450px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .input-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .input-row input,
+    .input-row select {
+      flex: 1 1 30%;
+      padding: 12px;
+      font-size: 18px;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      transition: all 0.2s ease;
+      min-width: 90px;
+    }
+
+    input:focus, select:focus {
+      border-color: #66a6ff;
+      outline: none;
+    }
+
+    button {
+      padding: 12px;
+      background: #66a6ff;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s ease;
+    }
+
+    button:hover {
+      background: #4b94ee;
+    }
+
+    .thinking {
+      font-style: italic;
+      color: #555;
+      margin-top: 20px;
+      animation: pulse 1.5s infinite;
+    }
+
+    .result {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 30px;
+      color: #333;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.3; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="calculator">
+    <h1>🧠 Slow Calculator</h1>
+
+    <div class="input-row">
+      <input type="number" id="num1" placeholder="First number">
+      <select id="operator">
+        <option value="+">+</option>
+        <option value="-">−</option>
+        <option value="*">×</option>
+        <option value="/">÷</option>
+      </select>
+      <input type="number" id="num2" placeholder="Second number">
+    </div>
+
+    <button onclick="slowCalculate()">Calculate</button>
+
+    <div class="thinking" id="thinkingMessage"></div>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function slowCalculate() {
+      const num1 = parseFloat(document.getElementById('num1').value);
+      const num2 = parseFloat(document.getElementById('num2').value);
+      const op = document.getElementById('operator').value;
+      const thinking = document.getElementById('thinkingMessage');
+      const result = document.getElementById('result');
+
+      if (isNaN(num1) || isNaN(num2)) {
+        alert("Enter valid numbers first!");
+        return;
+      }
+
+      thinking.innerText = "Hmm... thinking deeply...";
+      result.innerText = "";
+
+      setTimeout(() => {
+        thinking.innerText = "Still thinking... 🧠";
+      }, 1500);
+
+      setTimeout(() => {
+        thinking.innerText = "Almost there...";
+      }, 3000);
+
+      setTimeout(() => {
+        let answer;
+        switch (op) {
+          case '+': answer = num1 + num2; break;
+          case '-': answer = num1 - num2; break;
+          case '*': answer = num1 * num2; break;
+          case '/': answer = num2 !== 0 ? (num1 / num2).toFixed(2) : "💥 Division by zero!"; break;
+        }
+        thinking.innerText = "";
+        result.innerText = "Result: " + answer;
+      }, 4500);
+    }
+  </script>
+</body>
+</html>
