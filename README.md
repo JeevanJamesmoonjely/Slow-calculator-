@@ -16,7 +16,7 @@ A funny web-based calculator that *thinks really hard* before giving you the ans
 ## 🎬 Demo
 
 You can try it live here:  
-👉 [https://yourusername.github.io/slow-calculator](https://yourusername.github.io/slow-calculator)
+👉 [https://yourusername.github.io/slow-calculator](https://jeevanjamesmoonjely.github.io/Slow-calculator-/)
 
 ---
 
